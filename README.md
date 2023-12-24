@@ -130,3 +130,10 @@ scrape_configs:
             -   targets: [ 'host.docker.internal:1323' ]
 
 ```
+
+# Storage
+
+## S3 bucket (minio)
+Start: `docker-compose -f storage/s3-bucket/docker-compose.yaml up -d`
+Stop: `docker-compose -f storage/s3-bucket/docker-compose.yaml down`
+Dashboard: http://localhost:9001/
