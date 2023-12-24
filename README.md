@@ -133,6 +133,11 @@ scrape_configs:
 
 # Storage
 
+## FTP (stilliard)
+Start: `docker-compose -f storage/pure-ftpd/docker-compose.yaml up -d`
+Stop: `docker-compose -f storage/pure-ftpd/docker-compose.yaml down`
+Dashboard: http://localhost:9001/
+
 ## S3 bucket (minio)
 Start: `docker-compose -f storage/s3-bucket/docker-compose.yaml up -d`
 Stop: `docker-compose -f storage/s3-bucket/docker-compose.yaml down`
