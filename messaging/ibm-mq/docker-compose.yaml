@@ -2,6 +2,7 @@ version: '3'
 
 services:
   ibm-mq:
+    platform: linux/amd64
     restart: unless-stopped
     container_name: ibm-mq
     image: ibmcom/mq:latest
