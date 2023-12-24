@@ -48,7 +48,7 @@ In Intellij, choose `Connection type`:`URL only` and enter the url above.
 Start: `docker-compose -f databases/postgresql/docker-compose.yaml up -d`
 Stop: `docker-compose -f databases/postgresql/docker-compose.yaml down`
 
-# Mail
+# Mailing
 
 ## Mailhog
 
@@ -63,6 +63,20 @@ Dashboard: http://127.0.0.1:9025/mailhog/
 Start: `docker-compose -f messaging/ibm-mq/docker-compose.yaml up -d`
 Stop: `docker-compose -f messaging/ibm-mq/docker-compose.yaml down`
 Dashboard (admin/passw0rd): https://127.0.0.1:9443/ibmmq/console/
+
+## Red hat AMQ
+
+Start: `docker-compose -f messaging/red-hat-amq/docker-compose.yaml up -d`
+Stop: `docker-compose -f messaging/red-hat-amq/docker-compose.yaml down`
+Dashboard (admin/admin): http://127.0.0.1:8161/console/
+
+To use the docker login command to authenticate to registry.redhat.io:
+
+```shell
+# docker login https://registry.redhat.io
+Username: myrhusername
+Password:  ***********
+```
 
 # Monitoring
 

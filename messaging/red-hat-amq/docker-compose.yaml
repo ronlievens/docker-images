@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  red-hat-amq:
+    restart: unless-stopped
+    container_name: red-hat-amq
+    image: registry.redhat.io/amq7/amq-broker:latest
+    ports:
+      - '127.0.0.1:8161:8161'
+      - '127.0.0.1:61616:61616'
+    volumes:
+      - ./broker.xml:/opt/amq/conf/broker.xml
+      - ./data:/opt/amq-broker/
+    environment:
+      AMQ_USER: "admin"
+      AMQ_PASSWORD: "admin"
