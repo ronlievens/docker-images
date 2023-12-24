@@ -2,6 +2,7 @@ version: '3'
 
 services:
   red-hat-amq:
+    platform: linux/amd64
     restart: unless-stopped
     container_name: red-hat-amq
     image: registry.redhat.io/amq7/amq-broker:latest
