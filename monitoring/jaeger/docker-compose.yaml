@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  jaeger:
+    restart: unless-stopped
+    container_name: jaeger
+    image: jaegertracing/all-in-one
+    command: ["--query.base-path=/jaeger"]
+    ports:
+      - '127.0.0.1:6831:6831/udp'
+      - '127.0.0.1:16686:16686'

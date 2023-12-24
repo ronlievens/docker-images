@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  elasticsearch:
+    restart: unless-stopped
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    volumes:
+      - ./data:/usr/share/elasticsearch/data
+    ports:
+      - '127.0.0.1:9200:9200'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    environment:
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+      - 'discovery.type=single-node'
+
+  logstash:
+    restart: unless-stopped
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash-oss:7.13.0
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - ./logs:/logs
+    ports:
+      - '127.0.0.1:5000:5000'
+      - '127.0.0.1:9600:9600'
+    environment:
+      - 'LS_JAVA_OPTS=-Xmx256m -Xms256m'
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    restart: unless-stopped
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana-oss:7.10.2
+    ports:
+      - '127.0.0.1:5601:5601'
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    depends_on:
+      - elasticsearch
+      - logstash

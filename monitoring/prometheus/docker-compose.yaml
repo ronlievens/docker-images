@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  prometheus:
+    restart: unless-stopped
+    container_name: prometheus
+    image: prom/prometheus
+    command: [ '--config.file=/prometheus.yml', '--web.external-url=http://127.0.0.1:9090/prometheus', '--web.route-prefix=/prometheus' ]
+    ports:
+      - '127.0.0.1:9090:9090'
+    volumes:
+      - ./prometheus.yml:/prometheus.yml:ro
+      - ./data:/prometheus
+

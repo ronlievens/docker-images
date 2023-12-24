@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db2:
+    restart: unless-stopped
+    container_name: ibm-db2
+    image: ibmcom/db2:latest
+    privileged: true
+    ports:
+      - '127.0.0.1:50000:50000'
+    volumes:
+      - ./data:/database
+    environment:
+      LICENSE: accept
+      DB2INSTANCE: admin
+      DB2INST1_PASSWORD: adminpwd
+      DBNAME: testdb

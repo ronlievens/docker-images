@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mailhog:
+    restart: unless-stopped
+    container_name: mailhog
+    image: mailhog/mailhog
+    command: [ "-ui-web-path=mailhog", "-storage=maildir", "-maildir-path=/mails" ]
+    ports:
+      - '127.0.0.1:1025:1025'
+      - '127.0.0.1:9025:8025'
+    volumes:
+      - ./data:/mails

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  grafana:
+    restart: unless-stopped
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+      - '127.0.0.1:3000:3000'
+    volumes:
+      - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./data:/var/lib/grafana
+      - ./logs:/var/log/grafana
+    environment:
+      - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+      - GF_SECURITY_ADMIN_PASSWORD=sre
+      - GF_USERS_ALLOW_SIGN_UP=false

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  oracle:
+    restart: unless-stopped
+    container_name: oracle-xe
+    image: gvenzl/oracle-free:latest
+    ports:
+      - '127.0.0.1:1521:1521'
+    volumes:
+      - ./data:/opt/oracle/oradata
+    environment:
+      ORACLE_RANDOM_PASSWORD: true
+      ORACLE_DATABASE: PDB1
+      ORACLE_ALLOW_REMOTE: true
+      APP_USER: admin
+      APP_USER_PASSWORD: adminpwd
